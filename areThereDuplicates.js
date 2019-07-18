@@ -15,6 +15,15 @@ areThereDuplicates(1, 2, 2); // true
 areThereDuplicates('a', 'b', 'c', 'a', 'c'); // true
 */
 
+// Below solution in O(n^2)
 function areThereDuplicates() {
-
+  let storage = [];
+  for (let i = 0; i < arguments.length; i++) {
+    if (storage.includes(arguments[i])) {
+      return true;
+    } else {
+      storage.push(arguments[i]);
+    }
+  }
+  return false;
 }
