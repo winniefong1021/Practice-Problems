@@ -16,14 +16,40 @@ areThereDuplicates('a', 'b', 'c', 'a', 'c'); // true
 */
 
 // Below solution in O(n^2)
+// function areThereDuplicates() {
+//   let storage = [];
+//   for (let i = 0; i < arguments.length; i++) {
+//     if (storage.includes(arguments[i])) {
+//       return true;
+//     } else {
+//       storage.push(arguments[i]);
+//     }
+//   }
+//   return false;
+// }
+
+// Below solution is O(n)
 function areThereDuplicates() {
-  let storage = [];
+  let storage = {};
+
   for (let i = 0; i < arguments.length; i++) {
-    if (storage.includes(arguments[i])) {
-      return true;
+    if (storage[arguments[i]]) {
+      storage[arguments[i]]++;
     } else {
-      storage.push(arguments[i]);
+      storage[arguments[i]] = 1;
     }
   }
+
+  for (let key in storage) {
+    if (storage[key] > 1) {
+      return true;
+    }
+  }
+
   return false;
 }
+
+// one-liner
+// function areThereDuplicates() {
+//   return new Set(arguments).size !== arguments.length;
+// }
