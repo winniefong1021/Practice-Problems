@@ -14,5 +14,23 @@ minSubArrayLen([2, 3, 5], 7); // 0
 */
 
 function minSubArrayLen(arr, target) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let shortest = Infinity;
 
+  while (start < arr.length) {
+    if (total < target && end < arr.length) {
+      total += arr[end];
+      end++;
+    } else if (total >= target) {
+      shortest = Math.min(shortest, end - start);
+      total -= arr[start];
+      start++;
+    } else {
+      break;
+    }
+  }
+
+  return shortest === Infinity ? 0 : shortest;
 }
