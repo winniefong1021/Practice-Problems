@@ -15,5 +15,20 @@ maxSubArraySum([2, 3], 3); // null
 */
 
 function maxSubArraySum(arr, lgth) {
+  if (arr.length < lgth) {
+    return null;
+  }
 
+  let total = 0;
+  for (let i = 0; i < lgth; i++) {
+    total += arr[i];
+  }
+
+  let currentTotal = total;
+  for (let j = lgth; j < arr.length; j++) {
+    currentTotal += arr[j] - arr[j - lgth];
+    total = Math.max(total, currentTotal);
+  }
+
+  return total;
 }
