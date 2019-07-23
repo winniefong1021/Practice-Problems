@@ -11,5 +11,18 @@ findLongestSubString('thecatinthehat'); // 7
 */
 
 function findLongestSubString(str) {
+  let longest = 0;
+  let start = 0;
+  let checkChar = {};
 
+  for (var i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (checkChar[char]) {
+      start = Math.max(start, checkChar[char]);
+    }
+    longest = Math.max(longest, i - start + 1);
+    checkChar[char] = i + 1;
+  }
+
+  return longest;
 }
