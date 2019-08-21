@@ -67,6 +67,21 @@ class LinkedList {
     }
     return current;
   }
+
+  unshift(val) {
+    let newNode = new Node(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
 }
 
 let list = new LinkedList();
@@ -75,6 +90,9 @@ list.push(4);
 list.push(6);
 list.push(7);
 list.traverse();
-list.pop(); // 7 => 1,4,6
-list.shift(); // 1 => 4,6
+list.pop(); // 7 => 1, 4, 6
+list.shift(); // 1 => 4, 6
+list.unshift(5); // 5, 4, 6
+list.get(1); // 4
+list.get(0); // 5
 console.log(list);
