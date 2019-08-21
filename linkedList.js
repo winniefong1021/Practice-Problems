@@ -82,6 +82,23 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+
+    let count = 0;
+    let current = this.head;
+
+    while (current) {
+      if (idx === count) {
+        return current;
+      }
+      current = current.next;
+      count++;
+    }
+
+    return current;
+  }
 }
 
 let list = new LinkedList();
@@ -93,6 +110,8 @@ list.traverse();
 list.pop(); // 7 => 1, 4, 6
 list.shift(); // 1 => 4, 6
 list.unshift(5); // 5, 4, 6
-list.get(1); // 4
-list.get(0); // 5
+console.log(list.get(1)); // 4
+console.log(list.get(0)); // 5
+console.log(list.get(2)); // 6
+console.log(list.get(5)); // null
 console.log(list);
