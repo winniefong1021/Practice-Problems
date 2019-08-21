@@ -34,11 +34,30 @@ class LinkedList {
     this.length++;
     return this;
   }
+
+  pop() {
+    let current = this.head;
+    let newTail = current;
+
+    if (this.length === 0) return undefined;
+
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    return current;
+  }
 }
 
 let list = new LinkedList();
 list.push(1);
 list.push(4);
 list.push(6);
+list.push(7);
 list.traverse();
+list.pop();
 console.log(list);
