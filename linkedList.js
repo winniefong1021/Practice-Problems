@@ -99,6 +99,17 @@ class LinkedList {
 
     return current;
   }
+
+  set(idx, val) {
+    let oldNode = this.get(idx);
+
+    if (oldNode) {
+      oldNode.val = val;
+      return true;
+    }
+
+    return false;
+  }
 }
 
 let list = new LinkedList();
@@ -106,12 +117,15 @@ list.push(1);
 list.push(4);
 list.push(6);
 list.push(7);
-list.traverse();
+// list.traverse();
 list.pop(); // 7 => 1, 4, 6
 list.shift(); // 1 => 4, 6
 list.unshift(5); // 5, 4, 6
-console.log(list.get(1)); // 4
-console.log(list.get(0)); // 5
-console.log(list.get(2)); // 6
-console.log(list.get(5)); // null
+list.get(1); // 4
+list.get(0); // 5
+list.get(2); // 6
+list.get(5); // null
+console.log(list.set(0, 10)); // true; list: 5, 4, 6 => 10, 4, 6
+console.log(list.set(1, 11)); // true; list: 10, 4, 6 => 10, 11, 6
+console.log(list.set(6, 6)); // false
 console.log(list);
