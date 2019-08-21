@@ -56,6 +56,17 @@ class LinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (!this.head) return undefined;
+    let current = this.head;
+    this.head = current.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return current;
+  }
 }
 
 let list = new LinkedList();
@@ -64,5 +75,6 @@ list.push(4);
 list.push(6);
 list.push(7);
 list.traverse();
-list.pop();
+list.pop(); // 7 => 1,4,6
+list.shift(); // 1 => 4,6
 console.log(list);
