@@ -12,6 +12,7 @@ class LinkedList {
     this.length = 0;
   }
 
+  // goes through entire list
   traverse() {
     let current = this.head;
     while (current) {
@@ -20,6 +21,7 @@ class LinkedList {
     }
   }
 
+  // adds node to end of list
   push(val) {
     let newNode = new Node(val);
 
@@ -35,6 +37,7 @@ class LinkedList {
     return this;
   }
 
+  // removes node at end of list
   pop() {
     let current = this.head;
     let newTail = current;
@@ -57,6 +60,7 @@ class LinkedList {
     return current;
   }
 
+  // removes node from beginning of list
   shift() {
     if (!this.head) return undefined;
     let current = this.head;
@@ -68,6 +72,7 @@ class LinkedList {
     return current;
   }
 
+  // adds node to beginning of list
   unshift(val) {
     let newNode = new Node(val);
 
@@ -83,6 +88,7 @@ class LinkedList {
     return this;
   }
 
+  // retrieves node at specific position
   get(idx) {
     if (idx < 0 || idx >= this.length) return null;
 
@@ -100,6 +106,7 @@ class LinkedList {
     return current;
   }
 
+  // updates a specific node at given position and new value
   set(idx, val) {
     let oldNode = this.get(idx);
 
@@ -111,6 +118,7 @@ class LinkedList {
     return false;
   }
 
+  // adds new node at specific position
   insert(idx, val) {
     let newNode = new Node(val);
 
@@ -131,6 +139,7 @@ class LinkedList {
     }
   }
 
+  // removes node at specific position
   remove(idx) {
     if (idx < 0 || idx > this.length) return undefined;
 
