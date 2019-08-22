@@ -130,6 +130,22 @@ class LinkedList {
       return true;
     }
   }
+
+  remove(idx) {
+    if (idx < 0 || idx > this.length) return undefined;
+
+    if (idx === this.length - 1) {
+      return this.pop();
+    } else if (idx === 0) {
+      return this.shift();
+    } else {
+      let prevNode = this.get(idx - 1);
+      let deleteNode = this.get(idx);
+      prevNode.next = deleteNode.next;
+      this.length--;
+      return deleteNode;
+    }
+  }
 }
 
 let list = new LinkedList();
