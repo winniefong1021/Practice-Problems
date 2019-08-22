@@ -149,7 +149,7 @@ class LinkedList {
       return this.shift();
     } else {
       let prevNode = this.get(idx - 1);
-      let deleteNode = this.get(idx);
+      let deleteNode = prevNode.next;
       prevNode.next = deleteNode.next;
       this.length--;
       return deleteNode;
