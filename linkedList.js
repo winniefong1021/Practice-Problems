@@ -12,7 +12,7 @@ class LinkedList {
     this.length = 0;
   }
 
-  // goes through entire list
+  // goes through entire list - O(n) linear
   traverse() {
     let current = this.head;
     while (current) {
@@ -21,7 +21,7 @@ class LinkedList {
     }
   }
 
-  // adds node to end of list
+  // adds node to end of list - O(1) constant
   push(val) {
     let newNode = new Node(val);
 
@@ -37,7 +37,7 @@ class LinkedList {
     return this;
   }
 
-  // removes node at end of list
+  // removes node at end of list - O(n) linear
   pop() {
     let current = this.head;
     let newTail = current;
@@ -60,7 +60,7 @@ class LinkedList {
     return current;
   }
 
-  // removes node from beginning of list
+  // removes node from beginning of list - O(1) constant
   shift() {
     if (!this.head) return undefined;
     let current = this.head;
@@ -72,7 +72,7 @@ class LinkedList {
     return current;
   }
 
-  // adds node to beginning of list
+  // adds node to beginning of list - O(1) constant
   unshift(val) {
     let newNode = new Node(val);
 
@@ -88,7 +88,7 @@ class LinkedList {
     return this;
   }
 
-  // retrieves node at specific position
+  // retrieves node at specific position - O(n) linear
   get(idx) {
     if (idx < 0 || idx >= this.length) return null;
 
@@ -106,7 +106,7 @@ class LinkedList {
     return current;
   }
 
-  // updates a specific node at given position and new value
+  // updates a specific node at given position and new value - O(n) linear
   set(idx, val) {
     let oldNode = this.get(idx);
 
@@ -118,7 +118,7 @@ class LinkedList {
     return false;
   }
 
-  // adds new node at specific position
+  // adds new node at specific position - O(n) linear
   insert(idx, val) {
     let newNode = new Node(val);
 
@@ -139,7 +139,7 @@ class LinkedList {
     }
   }
 
-  // removes node at specific position
+  // removes node at specific position - O(n) linear
   remove(idx) {
     if (idx < 0 || idx > this.length) return undefined;
 
@@ -156,7 +156,7 @@ class LinkedList {
     }
   }
 
-  // reversing list in place
+  // reversing list in place - O(n) linear
   reverse() {
     let node = this.head;
     this.head = this.tail;
