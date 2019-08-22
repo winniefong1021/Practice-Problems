@@ -110,6 +110,26 @@ class LinkedList {
 
     return false;
   }
+
+  insert(idx, val) {
+    let newNode = new Node(val);
+
+    if (idx < 0 || idx > this.length) return false;
+
+    if (idx === this.length) {
+      this.push(val);
+      return true;
+    } else if (idx === 0) {
+      this.unshift(val);
+      return true;
+    } else {
+      let current = this.get(idx - 1);
+      newNode.next = current.next;
+      current.next = newNode;
+      this.length++;
+      return true;
+    }
+  }
 }
 
 let list = new LinkedList();
@@ -125,7 +145,15 @@ list.get(1); // 4
 list.get(0); // 5
 list.get(2); // 6
 list.get(5); // null
-console.log(list.set(0, 10)); // true; list: 5, 4, 6 => 10, 4, 6
-console.log(list.set(1, 11)); // true; list: 10, 4, 6 => 10, 11, 6
-console.log(list.set(6, 6)); // false
+list.set(1, 11); // true; list: 10, 4, 6 => 10, 11, 6
+list.set(6, 6); // false
+list.set(0, 10); // true; list: 5, 4, 6 => 10, 4, 6
+list.insert(0, 12); // true; 12, 10, 11, 6
+list.insert(4, 20); // true; 12, 10, 11, 6, 20
+list.insert(1, 14); // true; 12, 14, 10, 11, 6, 20
+list.insert(10, 50); // false
+list.remove(0); // uses shift and removes 12; list: 14, 10, 11, 6, 20
+list.remove(4); // uses pop and removes 20; list: 14, 10, 11, 6
+list.remove(2); // removing 11; list: 14, 10, 6
+list.remove(7); // undefined
 console.log(list);
