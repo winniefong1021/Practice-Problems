@@ -115,6 +115,17 @@ class DoublyLinkedList {
       }
     }
   }
+
+  // replace value of node at specific position - O(n) linear
+  set(idx, val) {
+    let update = this.get(idx);
+    if (update) {
+      update.val = val;
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -139,4 +150,5 @@ list.shift(); // list: 3
 list.shift(); // empty list
 list.unshift(4); // list: 4
 list.unshift(5); // list: 5, 4
+list.set(0, 1); // list: 1, 4
 console.log(list);
