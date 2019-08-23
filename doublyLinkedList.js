@@ -34,18 +34,38 @@ class DoublyLinkedList {
   pop() {
     if (!this.head) return undefined;
 
+    let removeNode = this.tail;
+
     if (this.length === 1) {
       this.head = null;
       this.tail = null;
-      this.length--;
     } else {
-      let removeNode = this.tail;
       this.tail = removeNode.prev;
       this.tail.next = null;
       removeNode.prev = null;
-      this.length--;
-      return removeNode;
     }
+
+    this.length--;
+    return removeNode;
+  }
+
+  // remove node from beginning of list - O(1) constant
+  shift() {
+    if (!this.head) return undefined;
+
+    let oldHead = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = oldHead.next;
+      this.head.prev = null;
+      oldHead.next = null;
+    }
+
+    this.length--;
+    return oldHead;
   }
 }
 
@@ -60,4 +80,8 @@ list.pop(); // list: 4
 list.pop(); // empty list
 list.push(1);
 list.push(2);
+list.push(3);
+list.shift(); // list: 2, 3
+list.shift(); // list: 3
+list.shift(); // empty list
 console.log(list);
