@@ -67,13 +67,66 @@ class DoublyLinkedList {
     this.length--;
     return oldHead;
   }
+
+  // add node to beginning to list - O(1) constant
+  unshift(val) {
+    let newNode = new Node(val);
+
+    if (this.length === 0) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
+
+  // access node by position - O(n) linear
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+
+    let middle = this.length / 2;
+
+    if (idx <= middle) {
+      let counter = 0;
+      let current = this.head;
+      while (counter <= middle) {
+        if (idx === counter) {
+          return current;
+        }
+        current = current.next;
+        counter++;
+      }
+    }
+
+    if (idx > middle) {
+      let counter = this.length - 1;
+      let current = this.tail;
+      while (counter > middle) {
+        if (idx === counter) {
+          return current;
+        }
+        current = current.prev;
+        counter--;
+      }
+    }
+  }
 }
 
 let list = new DoublyLinkedList();
 list.push(4);
 list.push(5);
 list.push(6);
-list.push(7);
+list.push(7); // list: 4, 5, 6, 7
+list.get(2); // 6
+list.get(0); // 4
+list.get(1); // 5
+list.get(6); // null
+list.get(-1); // null
 list.pop(); // list: 4, 5, 6
 list.pop(); // list: 4, 5
 list.pop(); // list: 4
@@ -84,4 +137,6 @@ list.push(3);
 list.shift(); // list: 2, 3
 list.shift(); // list: 3
 list.shift(); // empty list
+list.unshift(4); // list: 4
+list.unshift(5); // list: 5, 4
 console.log(list);
