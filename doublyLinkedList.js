@@ -126,6 +126,24 @@ class DoublyLinkedList {
       return false;
     }
   }
+
+  // add node at specific position - O(n) linear
+  insert(idx, val) {
+    let newNode = new Node(val);
+    let beforeNode = this.get(idx - 1);
+    let afterNode = beforeNode.next;
+
+    if (idx < 0 || idx >= this.length) return false;
+    if (idx === 0) return this.unshift();
+    if (idx === this.length - 1) return this.push();
+
+    newNode.prev = beforeNode;
+    afterNode.prev = newNode;
+    beforeNode.next = newNode;
+    newNode.next = afterNode;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new DoublyLinkedList();
@@ -133,6 +151,7 @@ list.push(4);
 list.push(5);
 list.push(6);
 list.push(7); // list: 4, 5, 6, 7
+list.insert(1, 10); // list: 4, 10, 5, 6, 7
 list.get(2); // 6
 list.get(0); // 4
 list.get(1); // 5
