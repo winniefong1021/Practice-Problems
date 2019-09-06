@@ -12,6 +12,7 @@ class Queue {
     this.size = 0;
   }
 
+  // add to end of list - O(1) constant
   enqueue(val) {
     let newNode = new Node(val);
 
