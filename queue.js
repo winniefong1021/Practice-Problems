@@ -26,6 +26,22 @@ class Queue {
     this.last = newNode;
     this.size++;
   }
+
+  // remove from beginning - O(1) constant
+  dequeue() {
+    let oldHead = this.first;
+
+    if (!this.first) return undefined;
+
+    if (this.size === 1) {
+      this.first = null;
+      this.last = null;
+    }
+
+    this.first = oldHead.next;
+    this.size--;
+    return oldHead;
+  }
 }
 
 let queue = new Queue();
@@ -33,4 +49,8 @@ queue.enqueue(1);
 queue.enqueue(2);
 queue.enqueue(3);
 queue.enqueue(4);
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
+queue.dequeue();
 console.log(queue);
