@@ -22,6 +22,8 @@ class BinarySearchTree {
     let checkNodeVal = (node) => {
       let current = node;
 
+      if (current.val === newNode.val) return undefined;
+
       if (newNode.val > current.val) { // check right side if greater
         if (!current.right) {
           current.right = newNode;
@@ -52,4 +54,5 @@ tree.insert(19); // root: 40, left: 20, 20.left.right: 19
 tree.insert(50); // root: 40, right: 50
 tree.insert(44); // root: 40, right: 50, 50.left: 44
 tree.insert(55); // root: 40, right: 50, 50.right: 55
+tree.insert(55); // undefined
 console.log(tree);
