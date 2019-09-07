@@ -1,3 +1,5 @@
+// best/average case: O(log n); worst case: O(n) for most methods
+
 class Node {
   constructor(val) {
     this.val = val;
@@ -70,6 +72,32 @@ class BinarySearchTree {
     findNode(this.root);
     return found;
   }
+
+  /*
+  Breadth-first search:
+    - start at root
+    - check each child node going from left to right then onto the next level until bottom right child node has been reached
+  */
+  bfs() {
+    if (!this.root) return undefined;
+
+    let queue = [this.root];
+    let visited = [];
+
+    while (queue.length > 0) {
+      let current = queue[0];
+      visited.push(current.val);
+      queue.shift();
+      if (current.left) {
+        queue.push(current.left);
+      }
+      if (current.right) {
+        queue.push(current.right);
+      }
+    }
+
+    return visited;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -86,4 +114,5 @@ tree.insert(55); // undefined
 tree.find(40); // true
 tree.find(22); // true
 tree.find(67); // false
+tree.bfs(); // [40, 20, 50, 18, 22, 44, 55, 19]
 console.log(tree);
