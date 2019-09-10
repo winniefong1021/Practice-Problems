@@ -112,6 +112,20 @@ class BinarySearchTree {
     addNode(this.root);
     return visited;
   }
+
+  // Depth-first search (PostOrder)
+  dfsPostOrder() {
+    let visited = [];
+
+    let addNode = (node) => {
+      if (node.left) addNode(node.left);
+      if (node.right) addNode(node.right);
+      visited.push(node.val);
+    }
+
+    addNode(this.root);
+    return visited;
+  }
 }
 
 let tree = new BinarySearchTree();
@@ -130,7 +144,8 @@ tree.find(22); // true
 tree.find(67); // false
 tree.bfs(); // [40, 20, 50, 18, 22, 44, 55, 19]
 tree.dfsPreOrder(); // [40, 20, 18, 19, 22, 50, 44, 55]
-console.log(tree);
+tree.dfsPostOrder(); // [19, 18, 22, 20, 44, 55, 50, 40]
+// console.log(tree);
 
 let tree1 = new BinarySearchTree();
 tree.root = new Node(10);
@@ -140,3 +155,4 @@ tree.insert(8);
 tree.insert(15);
 tree.insert(20);
 tree.dfsPreOrder(); // [10, 6, 3, 8, 15, 20]
+tree1.dfsPostOrder(); // [3, 8, 6, 20, 15, 10]
